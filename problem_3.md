@@ -1,6 +1,6 @@
 # 🧭 Problem 3: Gear Ratios *(Minecraft Edition)*
 
-<img src="img/problem3.png" alt="Minecraft Problem 1" width="850"/>
+<img src="img/problem3.png" alt="Minecraft Problem 3" width="850"/>
 
 You've guided the Elf to a **deep mineshaft** hidden below a mountain biome. At the bottom lies a **Minecart Lift Engine**, which won't activate. A nearby wall contains a redstone-and-ore **schematic**, etched into stone blocks.
 

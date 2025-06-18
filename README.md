@@ -1,5 +1,7 @@
 # 🟩 Minecraft CodeCraft: Student Hackathon 2025
 
+<img src="img/hackon.png" alt="Hackathon" width="850"/>
+
 🎮 **Welcome to CodeCraft!**  
 Are you ready to dig deep, craft clever solutions, and build your way to glory?  
 This student hackathon will test your logic, creativity, and problem-solving abilities – all wrapped in a **Minecraft-themed adventure**!
@@ -24,7 +26,7 @@ This student hackathon will test your logic, creativity, and problem-solving abi
 ## 🧱 Overview
 
 The mines are deep. The mobs are restless. The Redstone circuits are on the fritz.  
-It's up to **you and your team** to solve a series of programming puzzles scattered throughout the pixelated realm.
+It's up to **you** to solve a series of programming puzzles scattered throughout the pixelated realm.
 
 🕹 Each challenge is a standalone coding problem, ranging from logic puzzles to string manipulation to simulation challenges – all Minecraft-themed to keep things fun and immersive!
 
@@ -73,7 +75,7 @@ Each problem will include:
 ## 🧾 Submission Instructions
 
 1. Fork this repo 📦  
-2. Create a folder with your team name  
+2. Create a folder for yourself  
 3. Submit a solution file for each problem (`problem_1_solution.py`, etc.)  
 4. Include a brief `README.md` inside your folder describing how to run your code  
 5. Push to your fork and submit a PR to this repo before the deadline
