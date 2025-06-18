@@ -34,9 +34,9 @@ It's up to **you and your team** to solve a series of programming puzzles scatte
 
 | Date           | Event                     |
 |----------------|---------------------------|
-| Problem 1      | Treasure Map Calibration  |
-| Problem 2      | Cube Conundrum            |
-| Problem 3      | Gear Ratios               |
+| [Problem 1](problem_1_minecraft_theme.md)      | Treasure Map Calibration  | 
+| [Problem 2](problem_2_problem.md)      | Cube Conundrum            |
+| [Problem 3](problem_3.md)      | Gear Ratios               |
 
 
 ---
