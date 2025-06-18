@@ -41,6 +41,8 @@ In this schematic:
 
 What is the **sum of all part numbers** in your Minecraft schematic that are adjacent to a symbol?
 
+**Input:** [Problem Input](problem_3_input.txt)
+
 ---
 
 ## ⚙️ Part 2
@@ -75,3 +77,5 @@ Place your puzzle input schematic here. Then:
 - **Part 2 answer**: sum of gear ratios (for valid gears adjacent to exactly 2 part numbers)
 
 Activate the Minecart Lift Engine and uncover what lies beneath the mountain...
+
+**Input:** [Problem Input](problem_3_input.txt)

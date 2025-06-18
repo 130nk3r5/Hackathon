@@ -96,3 +96,5 @@ You get:
 ### 🎯 Task:
 
 What is the **sum of all calibration values**, including both digits and spelled-out numbers, in your scroll?
+
+**Input:** [Problem Input](problem_1_input.txt)
