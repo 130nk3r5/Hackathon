@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube Conundrum - Minecraft Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #87CEEB 0%, #4169E1 50%, #191970 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .floating-island {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            border-radius: 50% 50% 0 0;
+            width: 300px;
+            height: 150px;
+            margin: 100px auto 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .grass-layer {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            height: 20px;
+            background: #228B22;
+            border-radius: 50%;
+            box-shadow: 0 -5px 15px rgba(34,139,34,0.5);
+        }
+        
+        .title-container {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .main-title {
+            font-size: 3em;
+            color: #FFD700;
+            text-shadow: 3px 3px 0 #8B4513, 6px 6px 15px rgba(0,0,0,0.7);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 3px 3px 0 #8B4513, 6px 6px 15px rgba(0,0,0,0.7), 0 0 20px rgba(255,215,0,0.5); }
+            to { text-shadow: 3px 3px 0 #8B4513, 6px 6px 15px rgba(0,0,0,0.7), 0 0 30px rgba(255,215,0,0.8); }
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #E0E0E0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+        }
+        
+        .elf-container {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .elf {
+            display: inline-block;
+            font-size: 4em;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            75% { transform: translateY(-2px); }
+        }
+        
+        .magical-bag {
+            position: relative;
+            width: 120px;
+            height: 100px;
+            background: linear-gradient(145deg, #4B0082, #8A2BE2);
+            border-radius: 20px 20px 50px 50px;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(75,0,130,0.6);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(75,0,130,0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(138,43,226,0.8); }
+        }
+        
+        .bag-opening {
+            position: absolute;
+            top: -15px;
+            width: 80px;
+            height: 30px;
+            background: #2F1B69;
+            border-radius: 50%;
+            border: 3px solid #FFD700;
+        }
+        
+        .cube-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            z-index: 3;
+            position: relative;
+        }
+        
+        .cube {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 4s infinite linear;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        
+        .redstone-cube .cube-face {
+            background: linear-gradient(45deg, #DC143C, #FF6347);
+            color: white;
+        }
+        
+        .lapis-cube .cube-face {
+            background: linear-gradient(45deg, #4169E1, #6495ED);
+            color: white;
+        }
+        
+        .emerald-cube .cube-face {
+            background: linear-gradient(45deg, #00FF7F, #32CD32);
+            color: white;
+        }
+        
+        .cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(30px); }
+        .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(30px); }
+        .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(30px); }
+        .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(30px); }
+        .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(30px); }
+        .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(30px); }
+        
+        .problem-description {
+            position: relative;
+            z-index: 3;
+            background: rgba(0,0,0,0.8);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 800px;
+            color: #E0E0E0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+        
+        .part-title {
+            color: #FFD700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .limits {
+            background: rgba(75,0,130,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .limit-item {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .redstone-limit {
+            background: rgba(220,20,60,0.3);
+            border: 2px solid #DC143C;
+        }
+        
+        .emerald-limit {
+            background: rgba(0,255,127,0.3);
+            border: 2px solid #00FF7F;
+        }
+        
+        .lapis-limit {
+            background: rgba(65,105,225,0.3);
+            border: 2px solid #4169E1;
+        }
+        
+        .example-games {
+            background: rgba(139,69,19,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .magic-sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="magic-sparkles"></div>
+    
+    <div class="floating-island">
+        <div class="grass-layer"></div>
+    </div>
+    
+    <div class="title-container">
+        <h1 class="main-title">🧭 CUBE CONUNDRUM</h1>
+        <p class="subtitle">Minecraft Edition Hackathon Problem</p>
+    </div>
+    
+    <div class="elf-container">
+        <div class="elf">🧝‍♂️</div>
+        <p style="color: #E0E0E0; margin-top: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+            "Welcome to Skyblock Island, brave adventurer!"
+        </p>
+    </div>
+    
+    <div class="magical-bag">
+        <div class="bag-opening"></div>
+        <div style="color: #FFD700; font-size: 1.5em;">✨</div>
+    </div>
+    
+    <div class="cube-container">
+        <div class="cube redstone-cube">
+            <div class="cube-face">RED</div>
+            <div class="cube-face">STONE</div>
+            <div class="cube-face">⚡</div>
+            <div class="cube-face">RED</div>
+            <div class="cube-face">STONE</div>
+            <div class="cube-face">⚡</div>
+        </div>
+        
+        <div class="cube lapis-cube">
+            <div class="cube-face">LAPIS</div>
+            <div class="cube-face">BLUE</div>
+            <div class="cube-face">💎</div>
+            <div class="cube-face">LAPIS</div>
+            <div class="cube-face">BLUE</div>
+            <div class="cube-face">💎</div>
+        </div>
+        
+        <div class="cube emerald-cube">
+            <div class="cube-face">EMERALD</div>
+            <div class="cube-face">GREEN</div>
+            <div class="cube-face">💚</div>
+            <div class="cube-face">EMERALD</div>
+            <div class="cube-face">GREEN</div>
+            <div class="cube-face">💚</div>
+        </div>
+    </div>
+    
+    <div class="problem-description">
+        <div class="part-title">🧱 Part 1: Possible Games</div>
+        <p>The magical bag contains a limited number of cubes:</p>
+        
+        <div class="limits">
+            <div class="limit-item redstone-limit">12 Redstone</div>
+            <div class="limit-item emerald-limit">13 Emerald</div>
+            <div class="limit-item lapis-limit">14 Lapis</div>
+        </div>
+        
+        <p>Find all games where every draw never exceeds these limits, then sum their IDs!</p>
+        
+        <div class="example-games">
+Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
+        </div>
+        
+        <div class="part-title">⚙️ Part 2: Power Ratings</div>
+        <p>Calculate the "power rating" for each game:</p>
+        <p style="text-align: center; font-size: 1.2em; color: #FFD700; margin: 20px 0;">
+            <strong>(max red) × (max green) × (max blue)</strong>
+        </p>
+        <p>Sum all power ratings across all games!</p>
+    </div>
+
+    <script>
+        // Create floating stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Create magical sparkles
+        function createSparkles() {
+            const sparklesContainer = document.querySelector('.magic-sparkles');
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
+        
+        // Add floating animation to cubes
+        document.querySelectorAll('.cube').forEach((cube, index) => {
+            cube.style.animationDelay = index * 0.5 + 's';
+        });
+        
+        // Initialize animations
+        createStars();
+        createSparkles();
+        
+        // Add mouse interaction to the magical bag
+        const magicalBag = document.querySelector('.magical-bag');
+        magicalBag.addEventListener('mouseenter', () => {
+            magicalBag.style.transform = 'scale(1.1) rotate(5deg)';
+            magicalBag.style.transition = 'transform 0.3s ease';
+        });
+        
+        magicalBag.addEventListener('mouseleave', () => {
+            magicalBag.style.transform = 'scale(1) rotate(0deg)';
+        });
+    </script>
+</body>
+</html>
