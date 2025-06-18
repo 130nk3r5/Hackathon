@@ -1,9 +1,6 @@
 # 🧭 Problem 2: Cube Conundrum *(Minecraft Edition)*
 
-<video width="640" height="360" controls autoplay loop muted>
-  <source src="img/problem2.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<img src="img/problem2.gif" alt="Minecraft Problem 2" width="550"/>
 
 You’ve been summoned to the **Skyblock Island**, a floating ruin where an Elf offers a puzzling game involving enchanted **Minecraft cubes**. These cubes—**redstone**, **lapis**, and **emerald**—are hidden in a magical bag. Each round, the Elf draws cubes, shows them to you, and returns them to the bag.
 
