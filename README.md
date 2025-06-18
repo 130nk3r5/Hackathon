@@ -1,6 +1,8 @@
 # 🟩 Minecraft CodeCraft: Student Hackathon 2025
 
-<img src="img/hackon.png" alt="Hackathon" width="850"/>
+<div align="center">
+  <img src="img/hackon.png" alt="Hackathon" width="850"/>
+</div>
 
 🎮 **Welcome to CodeCraft!**  
 Are you ready to dig deep, craft clever solutions, and build your way to glory?  
