@@ -41,7 +41,7 @@ The calibration values would be:
 
 What is the **sum of all calibration values** in your Minecraft scroll?
 
-Input: [Problem Input]("/problem_1_input.txt")
+Input: [Problem Input](problem_1_input.txt)
 
 ---
 
